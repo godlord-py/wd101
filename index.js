@@ -54,8 +54,8 @@ const saveUserForm = (event) => {
     userEntries.push(entry);
     localStorage.setItem("user-entries", JSON.stringify(userEntries));
     displayEntries();
-
-}
+  }
+  
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("user-form");
   const dobInput = document.getElementById("dob");
@@ -74,22 +74,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function handleSubmit(event) {
+      saveUserForm.call(this, event)
       event.preventDefault();
       const dateOfBirth = dobInput.value;
       const age = validateAge(dateOfBirth);
-      if (age >= 18 && age <= 55) {
-        form.submit();
-      } else {
+      if(age > 18 && age < 55){
+        saveUserForm(event);
+    }
+      else {
         alert("You must be between 18 and 55 years old to register.");
       }
     }
     form.addEventListener("submit", handleSubmit);  
-}); 
-
-
-userForm.addEventListener("submit", saveUserForm);
 displayEntries();
-
+});
 
 
 
