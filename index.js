@@ -62,18 +62,17 @@ document.addEventListener("DOMContentLoaded", function () {
   function validateAge(dateOfBirth) {
     const today = new Date();
     const birthDate = new Date(dateOfBirth);
-    const age = today.getFullYear() - birthDate.getFullYear();
+    let age = today.getFullYear() - birthDate.getFullYear();
     const monthDiff = today.getMonth() - birthDate.getMonth() ;
     if (
       monthDiff < 0 ||
       (monthDiff === 0 && today.getDate() < birthDate.getDate())
       ) {
-      age;
+      age--;
       }
       return age;
     }
 
-    // Function to handle form submission
     function handleSubmit(event) {
       event.preventDefault();
       const dateOfBirth = dobInput.value;
