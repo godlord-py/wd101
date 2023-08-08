@@ -37,37 +37,6 @@ let details = document.getElementById("user-entries");
 details.innerHTML = table;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("registerForm");
-    const dobInput = document.getElementById("dob");
-
-    // Function to validate age
-    function validateAge(dateOfBirth) {
-      const today = new Date();
-      const birthDate = new Date(dateOfBirth);
-      const age = today.getFullYear() - birthDate.getFullYear();
-      const monthDiff = today.getMonth() - birthDate.getMonth();
-      if (
-        monthDiff < 0 ||
-        (monthDiff === 0 && today.getDate() < birthDate.getDate())
-      ) {
-        age--;
-      }
-      return age;
-    }
-
-    // Function to handle form submission
-    function handleSubmit(event) {
-      event.preventDefault();
-      const dateOfBirth = dobInput.value;
-      const age = validateAge(dateOfBirth);
-      if (age >= 18 && age <= 55) {
-        form.submit();
-      } else {
-        alert("You must be between 18 and 55 years old to register.");
-      }
-    }
-});
 const saveUserForm = (event) => {
     event.preventDefault();
     const name = document.getElementById("name").value;
@@ -87,11 +56,41 @@ const saveUserForm = (event) => {
     displayEntries();
 
 }
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("user-form");
+  const dobInput = document.getElementById("dob");
+  function validateAge(dateOfBirth) {
+    const today = new Date();
+    const birthDate = new Date(dateOfBirth);
+    const age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth() ;
+    if (
+      monthDiff < 0 ||
+      (monthDiff === 0 && today.getDate() < birthDate.getDate())
+      ) {
+      age;
+      }
+      return age;
+    }
+
+    // Function to handle form submission
+    function handleSubmit(event) {
+      event.preventDefault();
+      const dateOfBirth = dobInput.value;
+      const age = validateAge(dateOfBirth);
+      if (age >= 18 && age <= 55) {
+        form.submit();
+      } else {
+        alert("You must be between 18 and 55 years old to register.");
+      }
+    }
+    form.addEventListener("submit", handleSubmit);  
+}); 
 
 
-
-    // Add event listener to the form submit event
 userForm.addEventListener("submit", saveUserForm);
 displayEntries();
+
+
 
 
