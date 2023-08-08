@@ -74,7 +74,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function handleSubmit(event) {
-      saveUserForm.call(this, event)
       event.preventDefault();
       const dateOfBirth = dobInput.value;
       const age = validateAge(dateOfBirth);
